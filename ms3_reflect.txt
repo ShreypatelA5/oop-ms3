@@ -1,0 +1,54 @@
+// Name:                 Shrey Patel
+// Seneca Student ID:    158379214
+// Seneca email:         spatel562@senecacollege.ca
+// Date of completion:   7th April 2023
+//
+// I confirm that I am the only author of this file
+//      and the content was created entirely by me.
+
+1. What I learn from this MILESTONE PROJECT
+
+ - These Milestones created an interesting application that simulates an Assembly Line. After it was complete the logic behind it was very clear, but while I was coding it I struggled a bit to get to the right output for Milestone 3 as I always tried to follow the loop order not on the Stations txt files but starting on the first Workstation (Power Supply).
+
+ - It provided a chance to use many different concepts that we learned during this term, like types of associations and what class owns a resource or not, for example, Workstation had a pointer to a next station but would not manage its resources. Also, it was an opportunity to use lambdas and functions from the algorithm library. 
+
+ - For all 3 milestones, I had to makes changes to the Utilities class as my suppositions were not right. Especially about the more that could be used as a flag in a loop to keep creating new items in the CustomerOrder constructor. I could have just counted the number of remaining delimiters but I decided to make more use of the Utilities class. However, I am aware that it was required to keep resizing the dynamic array and is certainly not as efficient as just allocating it once after counting the number o delimiters.
+
+ - Only on MS3, I noticed that I should be using Utilities width to set the largest width to format printing for the other classes by setting it right after extract the token that defines the minimum width.
+
+ - Upon closer inspection, this assembly line seems to consist of several workstations or stations, each of which is responsible for a particular task in the assembly process. These stations are connected by a conveyor belt, which carries the unfinished product from one station to the next. As the product moves along the conveyor belt, it is gradually transformed into a finished product through a series of distinct stages.
+ 
+ - It is interesting to note that each station in this assembly line appears to be staffed by a single worker. This suggests that the assembly process may be relatively labor-intensive and that each worker is responsible for a specific task or set of tasks. Additionally, the diagram includes labels for several key components, including the conveyor belt, the control panel, and the finished product collection area. These labels provide additional context and help to clarify the overall structure and function of the assembly line.
+
+ - This program implements a class CustomerOrder with various member functions such as a constructor, copy constructor, move constructor, assignment operator overload, etc. The class stores customer orders consisting of a customer name, product name, and a list of items. Each item has a name, a unique serial number, and a flag indicating if it has been filled.
+
+ - The program also implements a class Station which stores information about a production line station, such as its name, ID, next serial number, and the number of items in stock.
+
+ - The Workstation class represents a single workstation in a production line, which has a queue of CustomerOrder objects to be processed. Each Workstation object is connected to the next Workstation object in the line using a pointer. The Workstation class also has functions to fill the current CustomerOrder and attempt to move the CustomerOrder to the next Workstation.
+
+ - The LineManager class manages the entire production line. It reads in a file that specifies the order in which the Workstation objects are connected, and it keeps track of the first Workstation in the line. The LineManager class also has functions to run the production line, reorder the Workstation objects based on the file, and display the Workstation objects.
+
+ - The code uses STL containers such as deque and vector, as well as algorithms such as for_each and reverse, to manage the CustomerOrder objects and Workstation objects efficiently. It also uses a Utilities class to extract tokens from the input file.
+
+ - The Station class represents a station that contains a quantity of a particular item. The class has several member variables, including an ID, name, quantity, and next serial number. The class has a constructor that accepts a string as a parameter to parse the station information. The class also has several member functions, including getItemName to get the name of the item, getNextSerialNumber to get the next serial number, getQuantity to get the quantity, updateQuantity to decrement the quantity, and a display function to output the station information.
+
+ 
+ 2. In Utilities.cpp
+    
+    sdds::Station::Station(const string& record) 
+    {
+        Utilities Ut;
+        size_t next_pos = 0;
+        bool more = true;
+
+        m_id = ++id_generator;
+        m_name = Ut.extractToken(record, next_pos, more);
+        nextSerial = stoi(Ut.extractToken(record, next_pos, more));
+        stockQty = stoi(Ut.extractToken(record, next_pos, more));
+        m_widthField = m_widthField > Ut.getFieldWidth() ? m_widthField : Ut.getFieldWidth();
+        m_desc = Ut.extractToken(record, next_pos, more);
+      }
+
+ - The sdds namespace contains the definitions for both the Station class and its function Object() { [native code] }, along with other classes and functions related to software development projects. The Station objects are given unique IDs using the static variable id generator, which is likely defined elsewhere in a header file or another source file. The id generator's value is incremented using the ++ operator before it is assigned to the object's m id.
+
+ - To extract tokens from the record string, the extractToken function of the Utilities class is called multiple times, with parameters next pos and more to keep track of the current position in the string and whether there are any more tokens left to extract. The extracted tokens are then converted to integers using the stoi function. Additionally, the m widthField member variable is modified based on the width of the extracted tokens using the ternary operator (?:).
