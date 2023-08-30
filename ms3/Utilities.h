@@ -1,10 +1,3 @@
-// Name: Shrey Patel
-// Seneca Student ID: 158379214
-// Seneca email: spatel562@senecacollege.ca
-// Date of completion: 7th April 2023
-//
-// I confirm that I am the only author of this file
-//   and the content was created entirely by me.
 
 #ifndef _UTILITIES_H
 #define _UTILITIES_H
